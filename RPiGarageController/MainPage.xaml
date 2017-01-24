@@ -1,0 +1,42 @@
+﻿<Page
+    x:Class="RPiGarageController.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RPiGarageController"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="0,0,0,10">
+        <TextBox x:Name="txtHello" Margin="32,15,68,373" Text="startup default text" TextChanged="txtHello_TextChanged" Height="16" VerticalAlignment="Top"/>
+        <Button x:Name="btnHello" Content="Say Hello" Margin="32,50,0,330" VerticalAlignment="Top" HorizontalAlignment="Left" Click="btnHello_Click"/>
+
+        <TextBlock x:Name="txtTitle" HorizontalAlignment="Left" Margin="32,100,0,0" TextWrapping="Wrap" Text="Garage Status" FontWeight="Bold" VerticalAlignment="Top"/>
+        <TextBlock x:Name="txtKitDoor" HorizontalAlignment="Left" Margin="32,130,0,0" TextWrapping="Wrap" Text="Kitchen Door" VerticalAlignment="Top"/>
+        <TextBlock x:Name="txtKitDoorValue" HorizontalAlignment="Left" Margin="143,130,0,0" TextWrapping="Wrap" Text="........." VerticalAlignment="Top" RenderTransformOrigin="0.461,0.6"/>
+        <TextBlock x:Name="txtGarDoor" HorizontalAlignment="Left" Margin="32,160,0,0" TextWrapping="Wrap" Text="Garage Door" VerticalAlignment="Top"/>
+        <TextBlock x:Name="txtGarDoorValue" HorizontalAlignment="Left" Margin="143,160,0,0" TextWrapping="Wrap" Text="........." VerticalAlignment="Top" RenderTransformOrigin="0.461,0.6"/>
+        <TextBlock x:Name="txtGarLights" HorizontalAlignment="Left" Margin="32,190,0,0" TextWrapping="Wrap" Text="Garage Lights" VerticalAlignment="Top"/>
+        <TextBlock x:Name="txtGarLightsValue" HorizontalAlignment="Left" Margin="143,190,0,0" TextWrapping="Wrap" Text="........." VerticalAlignment="Top" RenderTransformOrigin="0.461,0.6"/>
+        <TextBlock x:Name="txtGarBayA" HorizontalAlignment="Left" Margin="32,220,0,0" TextWrapping="Wrap" Text="Garage Bay A" VerticalAlignment="Top"/>
+        <TextBlock x:Name="txtGarBayAValue" HorizontalAlignment="Left" Margin="143,220,0,0" TextWrapping="Wrap" Text="........." VerticalAlignment="Top" RenderTransformOrigin="0.461,0.6"/>
+        <TextBlock x:Name="txtGarBayB" HorizontalAlignment="Left" Margin="32,250,0,0" TextWrapping="Wrap" Text="Garage Bay B" VerticalAlignment="Top"/>
+        <TextBlock x:Name="txtGarBayBValue" HorizontalAlignment="Left" Margin="143,250,0,0" TextWrapping="Wrap" Text="........." VerticalAlignment="Top" RenderTransformOrigin="0.461,0.6"/>
+        <TextBlock x:Name="txtGarTemp" HorizontalAlignment="Left" Margin="32,300,0,0" TextWrapping="Wrap" Text="Garage Temp" VerticalAlignment="Top"/>
+        <TextBlock x:Name="txtGarTempValue" HorizontalAlignment="Left" Margin="143,300,0,0" TextWrapping="Wrap" Text="........." VerticalAlignment="Top" RenderTransformOrigin="0.461,0.6"/>
+
+        <TextBlock x:Name="txtFrontTempTitle" HorizontalAlignment="Left" Margin="265,100,0,0" TextWrapping="Wrap" Text="Front Temperature" FontWeight="Bold" VerticalAlignment="Top"/>
+        <TextBlock x:Name="txtFrontTemp" HorizontalAlignment="Left" Margin="265,130,0,0" TextWrapping="Wrap" Text="Temperature" VerticalAlignment="Top"/>
+        <TextBlock x:Name="txtFrontTempValue" HorizontalAlignment="Left" Margin="370,130,0,0" TextWrapping="Wrap" Text="........." VerticalAlignment="Top" RenderTransformOrigin="0.461,0.6"/>
+        <TextBlock x:Name="txtFrontHumid" HorizontalAlignment="Left" Margin="265,160,0,0" TextWrapping="Wrap" Text="Humidity" VerticalAlignment="Top"/>
+        <TextBlock x:Name="txtFronthumidValue" HorizontalAlignment="Left" Margin="370,160,0,0" TextWrapping="Wrap" Text="........." VerticalAlignment="Top" RenderTransformOrigin="0.461,0.6"/>
+        <TextBlock x:Name="txtFrontHI" HorizontalAlignment="Left" Margin="265,190,0,0" TextWrapping="Wrap" Text="Heat Index" VerticalAlignment="Top"/>
+        <TextBlock x:Name="txtFrontHIValue" HorizontalAlignment="Left" Margin="370,190,0,0" TextWrapping="Wrap" Text="........." VerticalAlignment="Top" RenderTransformOrigin="0.461,0.6"/>
+        <TextBlock x:Name="txtStatus" HorizontalAlignment="Left" Margin="588,304,0,0" TextWrapping="Wrap" Text="Waiting..." VerticalAlignment="Top" Width="69"/>
+
+
+
+
+
+    </Grid>
+</Page>
