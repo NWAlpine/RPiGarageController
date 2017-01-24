@@ -56,6 +56,7 @@ namespace RPiGarageController
         private async void Listener_ConnectionReceived(StreamSocketListener sender, StreamSocketListenerConnectionReceivedEventArgs args)
         //private void Listener_ConnectionReceived(StreamSocketListener sender, StreamSocketListenerConnectionReceivedEventArgs args)
         {
+            // these need to be wrapped in a Using statement
             var reader = new DataReader(args.Socket.InputStream);
             _writer = new DataWriter(args.Socket.OutputStream);
             try
