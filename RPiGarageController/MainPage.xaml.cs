@@ -75,13 +75,6 @@ namespace RPiGarageController
         {
             // set initial values to zero so they get sent
             ResetDataValues();
-            /*
-            DataProperties.GarageDoorState = -1;
-            DataProperties.KitchenDoorOpen = -1;
-            DataProperties.GarageLight = -1;
-            DataProperties.GarageBayAOccupiedState = -1;
-            DataProperties.GarageBayBOccupiedState = -1;
-            */
 
             this.InitializeComponent();
             ConnectSerialDevice();
@@ -172,7 +165,9 @@ namespace RPiGarageController
         { }
 
 
-
+        /// <summary>
+        /// Listen entry point for any new data
+        /// </summary>
         private async void Listen()
         {
             try
@@ -604,7 +599,7 @@ namespace RPiGarageController
         #region UI Handlers
         private void btnHello_Click(object sender, RoutedEventArgs e)
         {
-            txtHello.Text = "Hello!";
+            // txtHello.Text = "Hello!";
             i++;
         }
 

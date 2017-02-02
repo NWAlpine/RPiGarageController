@@ -8,8 +8,8 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="0,0,0,10">
-        <TextBox x:Name="txtHello" Margin="32,15,68,373" Text="startup default text" TextChanged="txtHello_TextChanged" Height="16" VerticalAlignment="Top"/>
-        <Button x:Name="btnHello" Content="Say Hello" Margin="32,50,0,330" VerticalAlignment="Top" HorizontalAlignment="Left" Click="btnHello_Click"/>
+        <!-- <TextBox x:Name="txtHello" Margin="32,15,68,373" Text="startup default text" TextChanged="txtHello_TextChanged" Height="16" VerticalAlignment="Top"/> -->
+        <!-- <Button x:Name="btnHello" Content="Say Hello" Margin="32,50,0,330" VerticalAlignment="Top" HorizontalAlignment="Left" Click="btnHello_Click"/> -->
 
         <TextBlock x:Name="txtTitle" HorizontalAlignment="Left" Margin="32,100,0,0" TextWrapping="Wrap" Text="Garage Status" FontWeight="Bold" VerticalAlignment="Top"/>
         <TextBlock x:Name="txtKitDoor" HorizontalAlignment="Left" Margin="32,130,0,0" TextWrapping="Wrap" Text="Kitchen Door" VerticalAlignment="Top"/>
