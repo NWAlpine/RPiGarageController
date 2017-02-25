@@ -96,8 +96,8 @@ namespace RPiGarageController
         {
             if (_writer != null)
             {
-                _writer.WriteUInt32(_writer.MeasureString(message));
-                _writer.WriteString(message);
+                _writer.WriteUInt32(_writer.MeasureString(message));    // send the size of the message
+                _writer.WriteString(message);                           // send the message
             }
 
             try
