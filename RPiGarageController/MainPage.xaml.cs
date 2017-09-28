@@ -19,12 +19,10 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-//using System.Net;
-//using System.Net.Sockets;
+using Microsoft.Azure.EventHubs;
 
 using Windows.Devices.Enumeration;
 using Windows.Devices.SerialCommunication;
-//using Windows.Networking.Sockets;
 using Windows.Storage.Streams;      // DataWriter
 using Windows.System.Threading;
 
@@ -40,6 +38,10 @@ using Windows.System.Threading;
       </Device>
     </DeviceCapability>
 
+serial port to search for: (FTDIBUS...)
+deviceId
+"\\\\?\\FTDIBUS#VID_0403+PID_6015+DA01I2O6A#0000#{86e0d1e0-8089-11d0-9ce4-08003e301f73}"
+
 Execute on RPi2:
 ----------------
 Change platform from “x86” to “ARM”
@@ -47,6 +49,9 @@ Change target device to “Remote Machine”
 Enter remote machine name (in my case that would be “minwinpc”)
 Set authentication mode to “Universal (Unencrypted protocol)”.
 In the project properties\debug is where the auth and target name are stored.
+
+    Event Hubs for UWP and .NET
+    https://github.com/azure/azure-event-hubs-dotnet
  */
 
 namespace RPiGarageController
@@ -88,7 +93,7 @@ namespace RPiGarageController
             // this selectes a specific serial port, if already known
             // string _serialSelector = SerialDevice.GetDeviceSelector("COM3");
 
-            // Find all the serial devices
+            // Find all the SERIAL devices
             // first get a AQS query that DeviceInfo class will use to find all serial devices
             // DeviceWatcher class can also be used, see sample
             string _serialSelector = SerialDevice.GetDeviceSelector();
@@ -130,7 +135,7 @@ namespace RPiGarageController
                 txtStatus.Text = "Running.";
 
                 socket = new SocketServer(9000);
-                ThreadPool.RunAsync(x => {
+                await ThreadPool.RunAsync(x => {
                     socket.OnError += socket_OnError;
                     socket.OnDataReceived += Socket_OnDataReceived;
                     socket.Begin();
@@ -141,7 +146,7 @@ namespace RPiGarageController
         /// <summary>
         /// process any data received
         /// </summary>
-        /// <param name="data">data recieved </param>
+        /// <param name="data">data recieved</param>
         private void Socket_OnDataReceived(string data)
         {
             // replace with data read from Arduino
@@ -229,6 +234,8 @@ namespace RPiGarageController
             dataReaderObject.ReadString(bytesRead)
             "gu1\r\ngl0\r\nde1\r\nla394\r\nsa111\r\ntc18.10\r\nth53.00\r\nta17.35\r\nti17.81\r\n"
             */
+
+            // parse and push up to Azure EventHub
 
             string sensorId;
 
@@ -395,28 +402,65 @@ namespace RPiGarageController
 
         internal void AnalyzeLightData(string data)
         {
-            // logic to analyze change in light: more light = smaller number, threshold is 80 if the number is less than 80, light is on
-            // parse out the data, send data only if there is a change
+            string lightSensor = data.Substring(1, 1);
             string reading = data.Substring(2);
             int value;
+
+            // logic to analyze change in light: more light = smaller number, threshold is 80 if the number is less than 80, light is on
+            // parse out the data, send data only if there is a change
             if (Int32.TryParse(reading, out value))
             {
                 if (value > DataProperties.LightOnThreshold)
                 {
-                    if (DataProperties.GarageLight != (int)DataProperties.LightState.Off)
+                    // select light sensor
+                    switch (lightSensor)
                     {
-                        txtGarLightsValue.Text = "Off.";
-                        DataProperties.GarageLight = (int)DataProperties.LightState.Off;
-                        socket.Send(string.Format("{0}{1}", DataProperties.LightPrefix, DataProperties.GarageLight));
+                        case "a":
+                            if (DataProperties.GarageLight != (int)DataProperties.LightState.Off)
+                            {
+                                txtGarLightsValue.Text = "Off.";
+                                DataProperties.GarageLight = (int)DataProperties.LightState.Off;
+                                socket.Send(string.Format("{0}{1}", DataProperties.LightPrefix, DataProperties.GarageLight));
+                            }
+                            break;
+
+                        case "b":
+                            if (DataProperties.GarageDoorOpenerLight != (int)DataProperties.LightState.Off)
+                            {
+                                txtGarOpenerLightsValue.Text = "Off.";
+                                DataProperties.GarageDoorOpenerLight = (int)DataProperties.LightState.Off;
+                                socket.Send(string.Format("{0}{1}", DataProperties.GarageDoorLightPrefix, DataProperties.GarageDoorLightPrefix));
+                            }
+                            break;
+
+                        default:
+                            break;
                     }
                 }
                 else if (value < DataProperties.LightOnThreshold)
                 {
-                    if (DataProperties.GarageLight != (int)DataProperties.LightState.On)
+                    switch (lightSensor)
                     {
-                        txtGarLightsValue.Text = "On.";
-                        DataProperties.GarageLight = (int)DataProperties.LightState.On;
-                        socket.Send(string.Format("{0}{1}", DataProperties.LightPrefix, DataProperties.GarageLight));
+                        case "a":
+                            if (DataProperties.GarageLight != (int)DataProperties.LightState.On)
+                            {
+                                txtGarLightsValue.Text = "On.";
+                                DataProperties.GarageLight = (int)DataProperties.LightState.On;
+                                socket.Send(string.Format("{0}{1}", DataProperties.LightPrefix, DataProperties.GarageLight));
+                            }
+                            break;
+
+                        case "b":
+                            if (DataProperties.GarageDoorOpenerLight != (int)DataProperties.LightState.On)
+                            {
+                                txtGarOpenerLightsValue.Text = "On.";
+                                DataProperties.GarageDoorOpenerLight = (int)DataProperties.LightState.On;
+                                socket.Send(string.Format("{0}{1}", DataProperties.LightPrefix, DataProperties.GarageDoorLightPrefix));
+                            }
+                            break;
+
+                        default:
+                            break;
                     }
                 }
             }
@@ -425,6 +469,16 @@ namespace RPiGarageController
                 // TODO: better error handling
                 txtGarLightsValue.Text = "Error!";
             }
+
+            /*
+            switch (lightSensor)
+            {
+
+                default:
+                    break;
+            }
+            */
+
         }
 
         internal void AnalyzeSonarData(string data)
@@ -596,7 +650,13 @@ namespace RPiGarageController
             DataProperties.LastFrontHI = -100;
         }
 
+        internal void SendToAzure()
+        {
+
+        }
+
         #region UI Handlers
+
         private void btnHello_Click(object sender, RoutedEventArgs e)
         {
             // txtHello.Text = "Hello!";
@@ -619,6 +679,11 @@ namespace RPiGarageController
         }
 
         public static int GarageLight
+        {
+            get; set;
+        }
+
+        public static int GarageDoorOpenerLight
         {
             get; set;
         }
@@ -711,6 +776,11 @@ namespace RPiGarageController
         public static string LightPrefix
         {
             get { return "l"; }
+        }
+
+        public static string GarageDoorLightPrefix
+        {
+            get { return "m"; }
         }
 
         public static string BayAPrefix

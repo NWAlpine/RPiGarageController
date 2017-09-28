@@ -127,6 +127,11 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Azure.EventHubs">
+      <HintPath>..\..\..\..\..\..\..\Projects\.NET Event Hub\azure-event-hubs-dotnet-dev\azure-event-hubs-dotnet-dev\src\Microsoft.Azure.EventHubs\bin\Debug\uap10.0\Microsoft.Azure.EventHubs.dll</HintPath>
+    </Reference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

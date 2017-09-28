@@ -18,12 +18,17 @@
         <TextBlock x:Name="txtGarDoorValue" HorizontalAlignment="Left" Margin="143,160,0,0" TextWrapping="Wrap" Text="........." VerticalAlignment="Top" RenderTransformOrigin="0.461,0.6"/>
         <TextBlock x:Name="txtGarLights" HorizontalAlignment="Left" Margin="32,190,0,0" TextWrapping="Wrap" Text="Garage Lights" VerticalAlignment="Top"/>
         <TextBlock x:Name="txtGarLightsValue" HorizontalAlignment="Left" Margin="143,190,0,0" TextWrapping="Wrap" Text="........." VerticalAlignment="Top" RenderTransformOrigin="0.461,0.6"/>
-        <TextBlock x:Name="txtGarBayA" HorizontalAlignment="Left" Margin="32,220,0,0" TextWrapping="Wrap" Text="Garage Bay A" VerticalAlignment="Top"/>
-        <TextBlock x:Name="txtGarBayAValue" HorizontalAlignment="Left" Margin="143,220,0,0" TextWrapping="Wrap" Text="........." VerticalAlignment="Top" RenderTransformOrigin="0.461,0.6"/>
-        <TextBlock x:Name="txtGarBayB" HorizontalAlignment="Left" Margin="32,250,0,0" TextWrapping="Wrap" Text="Garage Bay B" VerticalAlignment="Top"/>
-        <TextBlock x:Name="txtGarBayBValue" HorizontalAlignment="Left" Margin="143,250,0,0" TextWrapping="Wrap" Text="........." VerticalAlignment="Top" RenderTransformOrigin="0.461,0.6"/>
-        <TextBlock x:Name="txtGarTemp" HorizontalAlignment="Left" Margin="32,300,0,0" TextWrapping="Wrap" Text="Garage Temp" VerticalAlignment="Top"/>
-        <TextBlock x:Name="txtGarTempValue" HorizontalAlignment="Left" Margin="143,300,0,0" TextWrapping="Wrap" Text="........." VerticalAlignment="Top" RenderTransformOrigin="0.461,0.6"/>
+
+        <TextBlock x:Name="txtGarOpenerLights" HorizontalAlignment="Left" Margin="32,220,0,0" TextWrapping="Wrap" Text="Opener Lights" VerticalAlignment="Top"/>
+        <TextBlock x:Name="txtGarOpenerLightsValue" HorizontalAlignment="Left" Margin="143,220,0,0" TextWrapping="Wrap" Text="........." VerticalAlignment="Top" RenderTransformOrigin="0.461,0.6"/>
+
+
+        <TextBlock x:Name="txtGarBayA" HorizontalAlignment="Left" Margin="32,250,0,0" TextWrapping="Wrap" Text="Garage Bay A" VerticalAlignment="Top"/>
+        <TextBlock x:Name="txtGarBayAValue" HorizontalAlignment="Left" Margin="143,250,0,0" TextWrapping="Wrap" Text="........." VerticalAlignment="Top" RenderTransformOrigin="0.461,0.6"/>
+        <TextBlock x:Name="txtGarBayB" HorizontalAlignment="Left" Margin="32,280,0,0" TextWrapping="Wrap" Text="Garage Bay B" VerticalAlignment="Top"/>
+        <TextBlock x:Name="txtGarBayBValue" HorizontalAlignment="Left" Margin="143,280,0,0" TextWrapping="Wrap" Text="........." VerticalAlignment="Top" RenderTransformOrigin="0.461,0.6"/>
+        <TextBlock x:Name="txtGarTemp" HorizontalAlignment="Left" Margin="32,320,0,0" TextWrapping="Wrap" Text="Garage Temp" VerticalAlignment="Top"/>
+        <TextBlock x:Name="txtGarTempValue" HorizontalAlignment="Left" Margin="143,320,0,0" TextWrapping="Wrap" Text="........." VerticalAlignment="Top" RenderTransformOrigin="0.461,0.6"/>
 
         <TextBlock x:Name="txtFrontTempTitle" HorizontalAlignment="Left" Margin="265,100,0,0" TextWrapping="Wrap" Text="Front Temperature" FontWeight="Bold" VerticalAlignment="Top"/>
         <TextBlock x:Name="txtFrontTemp" HorizontalAlignment="Left" Margin="265,130,0,0" TextWrapping="Wrap" Text="Temperature" VerticalAlignment="Top"/>

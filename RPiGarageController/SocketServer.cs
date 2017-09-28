@@ -56,7 +56,7 @@ namespace RPiGarageController
         private async void Listener_ConnectionReceived(StreamSocketListener sender, StreamSocketListenerConnectionReceivedEventArgs args)
         //private void Listener_ConnectionReceived(StreamSocketListener sender, StreamSocketListenerConnectionReceivedEventArgs args)
         {
-            // these need to be wrapped in a Using statement
+            // these need to be wrapped in a Using statement or disposed of properly
             var reader = new DataReader(args.Socket.InputStream);
             _writer = new DataWriter(args.Socket.OutputStream);
             try
@@ -65,7 +65,7 @@ namespace RPiGarageController
                 {
                     uint sizeFieldCount = await reader.LoadAsync(sizeof(uint));
 
-                    // if a disconnection happens
+                    // handle if a disconnection happens
                     if (sizeFieldCount != sizeof(uint))
                         return;
 
